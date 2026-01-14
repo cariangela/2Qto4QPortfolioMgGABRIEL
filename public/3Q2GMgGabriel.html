@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Club Application</title>
+
+<script>
+    function confirmApplicationSubmit() {
+        return confirm(
+            "Are you sure you want to submit this form?"
+        );
+    }
+
+    function confirmFormReset() {
+        return confirm("Are you sure you want to reset this form?"
+
+        );
+    }
+
+    function validateOnLeave(field) {
+        if (field.value.trim() === "") {
+            field.style.border = "2px solid red";
+        } 
+        else {
+            field.style.border = "";
+        }
+    }
+
+    function quickChecks() {
+        let studentId = document.getElementById("studentId").value;
+        let phoneNum = document.getElementById("mobile").value;
+
+        if (studentId.length < 5) {
+            alert("Student ID should be at least 5 digits.");
+            return false;
+        }
+
+        if (phoneNum.length < 10) {
+            alert("Please enter a valid mobile number.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</head>
+
+<body>
+
+<form method="post" action="submitApplication.php"
+      onsubmit="return confirmApplicationSubmit() && quickChecks()"
+      onreset="return confirmFormReset()">
+
+    <fieldset>
+        <legend>Student Information</legend>
+
+        <label>
+            Student ID<br>
+            <input type="number" id="studentId" name="student_id" required
+                   onblur="validateOnLeave(this)">
+        </label><br>
+
+        <label>
+            Full Name<br>
+            <input type="text" name="full_name" required
+                   onblur="validateOnLeave(this)">
+        </label><br>
+
+        <label>
+            Birthday<br>
+            <input type="date" name="birthday" required>
+        </label><br>
+
+        <label>
+            Email Address<br>
+            <input type="email" name="email" required
+                   onblur="validateOnLeave(this)">
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Club Application Details</legend>
+
+        <label>
+            Mobile Phone<br>
+            <input type="text" id="mobile" name="mobile" required
+                   onblur="validateOnLeave(this)">
+        </label><br>
+
+        <label>
+            Grade Level<br>
+            <select name="grade_level" required>
+                <option value="">Select grade</option>
+                <option value="lvl7">Grade 7</option>
+                <option value="lvl8">Grade 8</option>
+                <option value="lvl9">Grade 9</option>
+                <option value="lvl10">Grade 10</option>
+            </select>
+        </label><br>
+
+        <label>
+            Intern / Extern<br>
+            <input type="radio" name="placement" value="intern" required> Intern
+            <input type="radio" name="placement" value="extern"> Extern
+        </label><br>
+
+        <label>
+            Preferred Organization / Club<br>
+            <select name="club_choice" required>
+                <option value="">Choose a club</option>
+                <option value="science">Science Club</option>
+                <option value="arts">Arts Club</option>
+                <option value="sports">Sports Club</option>
+                <option value="music">Music Club</option>
+                <option value="tech">Technology Club</option>
+            </select>
+        </label><br>
+
+        <label>
+            Why do you want to join?<br>
+            <textarea name="reason" rows="4" required
+                      onblur="validateOnLeave(this)"></textarea>
+        </label>
+    </fieldset>
+
+    <input type="submit" value="Submit Application">
+    <input type="reset" value="Reset Form">
+
+</form>
+
+</body>
+</html>
