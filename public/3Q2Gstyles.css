@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ededed;
+}
+
+form {
+    width: 560px;
+    margin: 30px auto;
+    background: white;
+    padding: 18px;
+    border: 1px solid #aaa;
+}
+
+fieldset {
+    padding: 14px;
+    margin-bottom: 18px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 6px;
+}
+
+label {
+    display: block;
+    margin-top: 11px;
+}
+
+input, select, textarea{
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    background: #eef6ff;
+    border: 2px solid #4a6cff;
+    outline: none;
+}
+
+.missing {
+    border: 2px solid #cc0000;
+    background: #ffeaea;
+}
+
+.buttons{
+    text-align: center;
+    margin-top: 15px;
+}
