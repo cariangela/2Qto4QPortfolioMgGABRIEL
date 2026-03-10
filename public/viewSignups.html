@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>View Signups</title>
+
+<script>
+
+function loadSignups() {
+
+    let data = localStorage.getItem("clubSignups");
+
+    if (data == null) {
+        document.getElementById("message").innerHTML =
+        "No signups saved yet.";
+        return;
+    }
+
+    let signups = JSON.parse(data);
+
+    showTable(signups);
+}
+
+function showTable(list) {
+
+    let table = document.getElementById("tableBody");
+
+    table.innerHTML = "";
+
+    if (list.length == 0) {
+
+        document.getElementById("message").innerHTML =
+        "No signups for this club.";
+
+        document.getElementById("total").innerHTML =
+        "Total: 0";
+
+        return;
+    }
+
+    document.getElementById("message").innerHTML = "";
+
+    for (let i = 0; i < list.length; i++) {
+
+        let row =
+        "<tr>" +
+        "<td>" + list[i].studentId + "</td>" +
+        "<td>" + list[i].name + "</td>" +
+        "<td>" + list[i].grade + "</td>" +
+        "<td>" + list[i].club + "</td>" +
+        "</tr>";
+
+        table.innerHTML += row;
+
+    }
+
+    document.getElementById("total").innerHTML =
+    "Total Signups: " + list.length;
+
+}
+
+function filterClub() {
+
+    let club = document.getElementById("clubFilter").value;
+
+    let data = JSON.parse(localStorage.getItem("clubSignups"));
+
+    if (club == "All") {
+
+        showTable(data);
+
+    }
+    else {
+
+        let filtered = [];
+
+        for (let i = 0; i < data.length; i++) {
+
+            if (data[i].club == club) {
+
+                filtered.push(data[i]);
+
+            }
+
+        }
+
+        showTable(filtered);
+
+    }
+
+}
+
+</script>
+
+</head>
+
+<body onload="loadSignups()">
+
+<h2>Club Signups</h2>
+
+Filter by Club:
+
+<select id="clubFilter" onchange="filterClub()">
+
+<option>All</option>
+<option>Science Club</option>
+<option>Arts Club</option>
+<option>Sports Club</option>
+<option>Music Club</option>
+<option>Technology Club</option>
+
+</select>
+
+<br><br>
+
+<p id="message"></p>
+
+<table border="1">
+
+<tr>
+<th>Student ID</th>
+<th>Name</th>
+<th>Grade</th>
+<th>Club</th>
+</tr>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+<br>
+
+<p id="total"></p>
+
+<br>
+
+<a href="3Q2GMgGabriel.html">
+Back to Sign-Up Page
+</a>
+
+</body>
+</html>
